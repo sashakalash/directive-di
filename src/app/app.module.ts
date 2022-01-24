@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { UserService } from './user.service';
+import { NgModule, Self } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -16,7 +17,11 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(@Self() private userService: UserService) {
+    userService.log();
+  }
+}
