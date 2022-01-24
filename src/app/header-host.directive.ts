@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 
 @Directive({
   selector: '[appHeaderHost]',
+  providers: [UserService]
 })
 
 export class HeaderHostDirective {
@@ -11,7 +12,7 @@ export class HeaderHostDirective {
 		private el: ViewContainerRef,
 		private injector: Injector,
 		private resolver: ComponentFactoryResolver,
-		@SkipSelf() private userService: UserService
+		@Self() private userService: UserService
 	) {
 		let factory = resolver.resolveComponentFactory(HeaderComponent);
 		let componentRef = factory.create(injector);
