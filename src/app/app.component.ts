@@ -8,7 +8,7 @@ import { UserService } from './user.service';
   providers: [UserService]
 })
 export class AppComponent {
-  constructor(@Self() private userService: UserService) {
+  constructor(private userService: UserService) {
     userService.prefix = 'AppComponent';
     userService.log();
 }

@@ -12,16 +12,16 @@ export class HeaderHostDirective {
 		private el: ViewContainerRef,
 		private injector: Injector,
 		private resolver: ComponentFactoryResolver,
-		@Self() private userService: UserService
+		// @Self() private userService: UserService
 	) {
 		let factory = resolver.resolveComponentFactory(HeaderComponent);
 		let componentRef = factory.create(injector);
 		let view = componentRef.hostView;
     el.insert(view);
 
-    if (userService) {
-      userService.log();
-    }
+    // if (userService) {
+    //   // userService.log();
+    // }
 
 	}
 
