@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Self } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [UserService]
 })
 export class AppComponent {
-  title = 'directive-di';
+  constructor(@Self() private userService: UserService) {
+    userService.prefix = 'AppComponent';
+    userService.log();
+}
 }
