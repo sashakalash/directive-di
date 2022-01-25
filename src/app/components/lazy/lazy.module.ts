@@ -1,5 +1,5 @@
 import { UserService } from './../../user.service';
-import { Host, NgModule, Self, SkipSelf } from '@angular/core';
+import { Host, NgModule, Optional, Self, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LazyComponent } from './lazy/lazy.component';
 
@@ -13,11 +13,16 @@ import { LazyComponent } from './lazy/lazy.component';
   bootstrap: [LazyComponent]
 })
 export class LazyModule {
-  constructor(@Self() private userService: UserService) {
+  constructor( @Optional() @Self() private userService: UserService,
+    @Optional() @SkipSelf() private parentUserService: UserService) {
 
     if (userService) {
       userService.prefix = 'LazyModule';
       userService.log();
+    }
+
+    if (parentUserService) {
+      parentUserService.log();
     }
   }
 }
